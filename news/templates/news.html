@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}News · MovieReviews{% endblock %}
+
+{% block content %}
+  <h1 class="page-title">News</h1>
+  <p class="text-muted mb-4">Latest headlines related to movies.</p>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for n in news %}
+      <div class="col">
+        <div class="card movie-card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ n.title }}</h5>
+            <p class="card-text">{{ n.description }}</p>
+
+            {% if n.url %}
+              <a href="{{ n.url }}" class="btn btn-sm btn-primary" target="_blank" rel="noopener noreferrer">
+                Read more
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No news available.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

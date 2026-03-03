@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Statistics · MovieReviews{% endblock %}
+
+{% block content %}
+  <h1 class="page-title">Statistics</h1>
+  <p class="text-muted">Basic charts generated from the movie dataset.</p>
+
+  {% if stats_error %}
+    <div class="alert alert-warning" role="alert">
+      {{ stats_error }}
+      <br>
+      Install matplotlib with: <code>python -m pip install matplotlib</code>
+    </div>
+  {% endif %}
+
+  <div class="row g-4 mt-2">
+    <div class="col-12 col-lg-6">
+      <div class="card p-3">
+        <h4 class="mb-2">Movies by Category</h4>
+
+        {% if graphic_genre %}
+          <img
+            src="data:image/png;base64,{{ graphic_genre }}"
+            class="img-fluid"
+            alt="Movies by Genre chart"
+          >
+        {% else %}
+          <p class="text-muted mb-0">No chart available.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="card p-3">
+        <h4 class="mb-2">Movies by Year</h4>
+
+        {% if graphic_year %}
+          <img
+            src="data:image/png;base64,{{ graphic_year }}"
+            class="img-fluid"
+            alt="Movies by Year chart"
+          >
+        {% else %}
+          <p class="text-muted mb-0">No chart available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
